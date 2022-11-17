@@ -1,0 +1,108 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block content %}
+<h1 class="text-3xl">Evaluación curso Desarrollo web con Django</h1>
+<h2 class="text-xl text-gray-500">Tallerista: José Raymundo Salgado Araujo</h2>
+<br>
+
+<h3 class="text-xl">Promedio de calificación del curso: <b>{{average}}</b></h3>
+<br>
+
+<div class="flex flex-col gap-3">
+    <div>
+        <h3>Calificación del contenido:</h3>
+        <span class="font-bold">{{content_average}}</span>
+        {% for i in "aaaaa"  %}
+            {% if forloop.counter <= content_average%}
+                <i class="fa fa-star checked"></i>
+                {% else %}
+                    {% if content_average.is_integer %}
+                        <i class="fa fa-star"></i>
+                        {% else %}
+                        <i class="fa fa-star-half-o checked" aria-hidden="true"></i>
+                    {% endif %}
+                    
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <div>
+        <h3>Calificación de las clases:</h3>
+        <span class="font-bold">{{class_average}}</span>
+        {% for i in "aaaaa"  %}
+            {% if forloop.counter <= class_average%}
+                <i class="fa fa-star checked"></i>
+                {% else %}
+                    {% if class_average.is_integer %}
+                        <i class="fa fa-star"></i>
+                        {% else %}
+                        <i class="fa fa-star-half-o checked" aria-hidden="true"></i>
+                    {% endif %}
+                    
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <div>
+        <h3>Calificación del tallerista:</h3>
+        <span class="font-bold">{{facilitator_average}}</span>
+        {% for i in "aaaaa"  %}
+            {% if forloop.counter <= facilitator_average%}
+                <i class="fa fa-star checked"></i>
+                {% else %}
+                    {% if facilitator_average.is_integer %}
+                        <i class="fa fa-star"></i>
+                        {% else %}
+                        <i class="fa fa-star-half-o checked" aria-hidden="true"></i>
+                    {% endif %}
+                    
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<br>
+
+
+<div class="overflow-x-auto relative">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    #
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Satisfecho
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Comentario
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comment in comments  %}
+            <tr class="bg-white border-b">
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                    {{forloop.counter}}
+                </th>
+                <td class="py-4 px-6 text-center">
+                    {% if comment.liked %}
+                        Sí
+                        {% else %}
+                        No
+                    {% endif %}
+                </td>
+                <td class="py-4 px-6">
+                    {{comment.description}}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+{% endblock content %}

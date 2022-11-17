@@ -25,6 +25,6 @@ class Comment(models.Model):
         return average
     
     def __str__(self):
-        return self.description[:10]
+        return f'{self.description}'
 
 

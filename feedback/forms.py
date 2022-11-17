@@ -1,8 +1,11 @@
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
 from django import forms
 from .models import Comment
 
 RATES = [(1,1),(2,2),(3,3),(4,4),(5,5)]
 LIKED = [(True,'Sí'), (False,'No')]
+auth_class_input = 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
 
 class CommentForm(forms.ModelForm):
     content_rate = forms.ChoiceField(
@@ -60,3 +63,33 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('content_rate','class_rate','facilitator_rate','description','liked')
+
+class AuthForm(AuthenticationForm):
+    username = forms.CharField(
+        label='User',
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder":"Enter your username",
+                "class": auth_class_input
+            }
+        )
+    )
+
+    password = forms.CharField(
+        label='Password',
+        required=True,
+        widget=forms.PasswordInput(
+            attrs={
+                "placeholder":"Enter your password",
+                "class": auth_class_input
+            }
+        )
+    )
+
+    class Meta:
+        model = User
+        # fields = '__all__' todos
+        # fields = 'username' solo uno
+        # fields = ('username', 'password') varios
+        
